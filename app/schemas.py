@@ -30,7 +30,7 @@ class UserCreateResponse:
     data: UserOut
 
 class UserOrgAdd(BaseModel):
-    id: str
+    userId: str
 
 
 class OrgBase(BaseModel):

@@ -73,12 +73,15 @@ async def add_user_to_organisation(org_id: str,
             "message": "No organisation found"
         }, status.HTTP_404_NOT_FOUND)
     
-    user = get_user_by_id(_user.id, db)
+    user = get_user_by_id(_user.userId, db)
     if not user:
         return JSONResponse({
             "status": "Not Found",
             "message": "No user record found"
         }, status.HTTP_404_NOT_FOUND)
+    
+    if org.id in [user_org.id for user_org in user.organisations]:
+        return JSONResponse({"details": "User already in organisation"}, status_code=status.HTTP_409_CONFLICT)
     
     user.organisations.append(org)
     db.add(user)
