@@ -1,4 +1,6 @@
 # 0x02 - HNG Internship - Backend - Stage 02
+> A robust REST API built with FastAPI and PostgreSQL, implementing authentication, authorization, and endpoints for user and organization management
+
 > [View project description and requirement](https://fabulous-yogurt-1a4.notion.site/0X02-HNG-Internship-Backend-Stage-02-2829f7df22ce490e9b4777524dfb1c8f)
 
 ## API Documentation
