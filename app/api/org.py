@@ -7,12 +7,12 @@ from ..database import get_db
 from .. import schemas
 
 router = APIRouter(
-    prefix="/api/organisations",
+    prefix="/api",
     tags=["Organisation"],
     # responses={404: {"description": "Not found"}},
 )
 
-@router.get("/")
+@router.get("/organisations")
 def get_organisations(current_user: schemas.UserOut = Depends(get_current_user),
                            db: Session = Depends(get_db)):
     user = get_user_by_id(current_user.id, db)
@@ -27,7 +27,7 @@ def get_organisations(current_user: schemas.UserOut = Depends(get_current_user),
         }
     })
 
-@router.post("/")
+@router.post("/organisations")
 def create_organisation(org: schemas.OrgIn,
                         current_user: schemas.UserOut = Depends(get_current_user),
                         db: Session = Depends(get_db)):
@@ -45,7 +45,7 @@ def create_organisation(org: schemas.OrgIn,
     
     
 
-@router.get("/{org_id}")
+@router.get("/organisations/{org_id}")
 async def read_user(org_id: str, db=Depends(get_db),
                     current_user: schemas.UserOut = Depends(get_current_user)):
     
@@ -63,7 +63,7 @@ async def read_user(org_id: str, db=Depends(get_db),
     })
 
 
-@router.post("/{org_id}/users")
+@router.post("/organisations/{org_id}/users")
 async def add_user_to_organisation(org_id: str,
                                    _user: schemas.UserOrgAdd, db=Depends(get_db)):
     org = get_org_by_id(org_id, db)
